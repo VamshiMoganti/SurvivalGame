@@ -3,6 +3,7 @@ import sys
 from settings import *
 from player import Player
 from enemy import Enemy
+from bullet import Bullet
 
 pygame.init()
 
@@ -13,9 +14,9 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 36)
 
 def reset_game():
-    return Player(), [], 0, 0, False
+    return Player(), [], [], 0, 0, 3, False
 
-player, enemies, spawn_timer, score, game_over = reset_game()
+player, enemies, bullets, spawn_timer, score, health, game_over = reset_game()
 
 running = True
 
@@ -29,7 +30,11 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if game_over and event.key == pygame.K_r:
-                player, enemies, spawn_timer, score, game_over = reset_game()
+                player, enemies, bullets, spawn_timer, score, health, game_over = reset_game()
+
+            if not game_over and event.key == pygame.K_SPACE:
+                bullet = Bullet(player.x + player.size // 2, player.y)
+                bullets.append(bullet)
 
     if not game_over:
         keys = pygame.key.get_pressed()
@@ -40,6 +45,7 @@ while running:
             enemies.append(Enemy())
             spawn_timer = 0
 
+        # Update enemies
         for enemy in enemies[:]:
             enemy.update()
 
@@ -47,15 +53,43 @@ while running:
                 enemies.remove(enemy)
                 score += 1
 
+            # Collision with player
             if pygame.Rect(player.x, player.y, player.size, player.size).colliderect(enemy.get_rect()):
-                game_over = True
+                health -= 1
+                enemies.remove(enemy)
+                if health <= 0:
+                    game_over = True
 
+        # Update bullets
+        for bullet in bullets[:]:
+            bullet.update()
+
+            if bullet.off_screen():
+                bullets.remove(bullet)
+
+            # Bullet hits enemy
+            for enemy in enemies[:]:
+                if bullet.get_rect().colliderect(enemy.get_rect()):
+                    enemies.remove(enemy)
+                    if bullet in bullets:
+                        bullets.remove(bullet)
+                    score += 1
+                    break
+
+        # Draw everything
         player.draw(screen)
+
         for enemy in enemies:
             enemy.draw(screen)
 
+        for bullet in bullets:
+            bullet.draw(screen)
+
         score_text = font.render(f"Score: {score}", True, (0, 0, 0))
+        health_text = font.render(f"Health: {health}", True, (0, 0, 0))
+
         screen.blit(score_text, (10, 10))
+        screen.blit(health_text, (10, 40))
 
     else:
         over_text = font.render("GAME OVER", True, (0, 0, 0))
