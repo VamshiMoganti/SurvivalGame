@@ -1,0 +1,630 @@
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---
+UI rendering error: invalid color argument
+Traceback (most recent call last):
+  File "d:\My Projects\SurvivalGame\Main.py", line 875, in <module>
+    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
+  File "d:\My Projects\SurvivalGame\screen_juice.py", line 300, in draw_advanced_meter
+    pygame.draw.rect(screen, glow_color,
+ValueError: invalid color argument
+
+---

@@ -207,58 +207,102 @@ class EnemySprite:
 
 
 class BulletVisual:
-    """Enhanced bullet visuals"""
+    """Enhanced bullet visuals with neon glow effects"""
     
     @staticmethod
     def draw_bullet(screen, x, y, width, height, trail_points=None):
-        """Draw bullet with trail effect"""
-        # Draw trail
+        """Draw bullet with enhanced trail effect and glow"""
+        # Draw trail with gradient glow
         if trail_points and len(trail_points) > 1:
             for i in range(len(trail_points) - 1):
-                alpha = int(255 * (i / len(trail_points)))
-                trail_color = (150, 200, 255) if i < len(trail_points) // 2 else (100, 150, 255)
-                pygame.draw.line(screen, trail_color, trail_points[i], trail_points[i + 1], max(1, width - i // 5))
+                progress = i / max(1, len(trail_points) - 1)
+                # Fade from bright to dim
+                trail_alpha = int(255 * (1 - progress))
+                
+                # Glow rings
+                if i % 3 == 0:  # Draw glow every 3 points
+                    glow_size = max(1, width + int(5 * (1 - progress)))
+                    glow_color = (100 + int(100 * (1 - progress)), 150, 255)
+                    pygame.draw.circle(screen, glow_color, (int(trail_points[i][0]), int(trail_points[i][1])), glow_size // 2)
+                
+                # Trail line
+                trail_color = (100 + int(100 * (1 - progress)), 200 + int(50 * (1 - progress)), 255)
+                trail_width = max(1, width - i // 4)
+                pygame.draw.line(screen, trail_color, trail_points[i], trail_points[i + 1], trail_width)
         
-        # Main bullet body
-        pygame.draw.rect(screen, (100, 200, 255), (x, y, width, height))
-        # Bullet tip glow
-        pygame.draw.circle(screen, (200, 255, 255), (int(x + width // 2), int(y - 2)), 2)
-        # Outline
+        # Main bullet body with neon glow
+        bullet_color = (100, 220, 255)
+        glow_iterations = 3
+        for i in range(glow_iterations, 0, -1):
+            glow_color = tuple(min(int(c * (glow_iterations - i) / glow_iterations * 0.4), 255) for c in bullet_color)
+            pygame.draw.circle(screen, glow_color, (int(x + width // 2), int(y + height // 2)), width // 2 + i * 2)
+        
+        pygame.draw.rect(screen, bullet_color, (x, y, width, height))
+        
+        # Bullet tip glow (bright core)
+        pygame.draw.circle(screen, (200, 255, 255), (int(x + width // 2), int(y - 2)), 3)
+        pygame.draw.circle(screen, (255, 255, 255), (int(x + width // 2), int(y - 2)), 1)
+        
+        # Outline with glow
         pygame.draw.rect(screen, (150, 220, 255), (x, y, width, height), 1)
+        pygame.draw.rect(screen, (100, 200, 255), (x - 1, y - 1, width + 2, height + 2), 1)
 
 
 class PowerUpVisual:
-    """Enhanced power-up visuals with animations"""
+    """Enhanced power-up visuals with animations and neon glow"""
     
     @staticmethod
     def draw_health_powerup(screen, x, y, size, pulse=0):
-        """Health power-up with pulse effect"""
-        pulse_size = size + int(5 * pulse)
-        # Outer glow
-        pygame.draw.rect(screen, (0, 200, 0), (x - 2, y - 2, size + 4, size + 4), 1)
-        # Main square
+        """Health power-up with pulse effect and neon glow"""
+        pulse_size = size + int(8 * abs(pulse))
+        
+        # Multiple glow rings
+        for i in range(3, 0, -1):
+            glow_color = tuple(min(int(c * (4 - i) / 3 * 0.5), 255) for c in (0, 255, 0))
+            pygame.draw.rect(screen, glow_color, (x - i * 2, y - i * 2, size + i * 4, size + i * 4), 1)
+        
+        # Main square with bright green
         pygame.draw.rect(screen, (0, 255, 0), (x, y, size, size))
+        
+        # Inner glow
+        pygame.draw.rect(screen, (100, 255, 100), (x + 2, y + 2, size - 4, size - 4), 1)
+        
         # Cross pattern
-        pygame.draw.rect(screen, (255, 255, 255), (x + size // 3, y + size // 6, size // 3, 2 * size // 3))
-        pygame.draw.rect(screen, (255, 255, 255), (x + size // 6, y + size // 3, 2 * size // 3, size // 3))
-        # Pulse border
-        pygame.draw.rect(screen, (100, 255, 100), (x - pulse_size // 2, y - pulse_size // 2, size + pulse_size, size + pulse_size), 1)
+        pygame.draw.rect(screen, (255, 255, 255), (x + size // 3, y + size // 6, size // 3, 2 * size // 3), 2)
+        pygame.draw.rect(screen, (255, 255, 255), (x + size // 6, y + size // 3, 2 * size // 3, size // 3), 2)
+        
+        # Outer pulse border
+        pulse_color = (50, 200, 50)
+        pygame.draw.rect(screen, pulse_color, (x - pulse_size, y - pulse_size, size + pulse_size * 2, size + pulse_size * 2), 2)
     
     @staticmethod
     def draw_firerate_powerup(screen, x, y, size, pulse=0):
-        """Fire rate power-up with lightning effect"""
-        pulse_size = size + int(5 * pulse)
-        # Outer glow
-        pygame.draw.rect(screen, (255, 255, 0), (x - 2, y - 2, size + 4, size + 4), 1)
+        """Fire rate power-up with lightning effect and neon glow"""
+        pulse_size = size + int(8 * abs(pulse))
+        
+        # Multiple glow rings (yellow)
+        for i in range(3, 0, -1):
+            glow_color = tuple(min(int(c * (4 - i) / 3 * 0.5), 255) for c in (255, 255, 0))
+            pygame.draw.rect(screen, glow_color, (x - i * 2, y - i * 2, size + i * 4, size + i * 4), 1)
+        
         # Main square
         pygame.draw.rect(screen, (255, 255, 0), (x, y, size, size))
-        # Lightning bolt pattern
+        
+        # Inner bright border
+        pygame.draw.rect(screen, (255, 200, 0), (x + 2, y + 2, size - 4, size - 4), 2)
+        
+        # Lightning bolt pattern with glow
         bolt_points = [
             (x + size // 2, y + size // 4),
             (x + size // 3, y + size // 2),
             (x + 2 * size // 3, y + size // 2),
             (x + size // 2, y + size)
         ]
-        pygame.draw.lines(screen, (255, 200, 0), bolt_points, 2)
-        # Pulse border
-        pygame.draw.rect(screen, (255, 200, 0), (x - pulse_size // 2, y - pulse_size // 2, size + pulse_size, size + pulse_size), 1)
+        # Glow around bolt
+        pygame.draw.lines(screen, (255, 150, 0), bolt_points, 3)
+        # Bright bolt
+        pygame.draw.lines(screen, (255, 255, 100), bolt_points, 1)
+        
+        # Outer pulse border
+        pulse_color = (255, 200, 0)
+        pygame.draw.rect(screen, pulse_color, (x - pulse_size, y - pulse_size, size + pulse_size * 2, size + pulse_size * 2), 2)

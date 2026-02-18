@@ -13,6 +13,10 @@ from space_graphics import RocketGraphics
 from scores import load_high_scores, save_high_scores
 from boss import Boss
 from upgrades import Weapon, Shield, Achievement
+from visual_effects import (Nebula, EnergyPulse, ScreenFlash, NeonGlow, 
+                            ComboMeterVisual, ScreenTransition, ShieldEffect)
+from screen_juice import (ScreenJuice, ParticleExplosion, FloatingNumber, GlowingElement,
+                          MotionTrail, ComboVisualizer, ShinyNumber, PulsingBar, StarburstEffect)
 import traceback
 
 # Crash logging
@@ -54,8 +58,20 @@ class Star:
         pygame.draw.circle(screen, (self.brightness, self.brightness, self.brightness), (self.x, self.y), 1)
 
 stars = [Star() for _ in range(150)]
+nebulae = [
+    Nebula(random.randint(-100, WIDTH), random.randint(-100, HEIGHT), 400, 300, (100, 50, 200)),
+    Nebula(random.randint(-100, WIDTH), random.randint(-100, HEIGHT), 500, 350, (50, 100, 200)),
+    Nebula(random.randint(-100, WIDTH), random.randint(-100, HEIGHT), 450, 320, (200, 50, 100)),
+]
 
 def draw_starfield(screen, offset_x=0, offset_y=0):
+    """Draw starfield with nebula clouds"""
+    # Update and draw nebulae
+    for nebula in nebulae:
+        nebula.update()
+        nebula.draw(screen)
+    
+    # Update and draw stars with twinkling
     for star in stars:
         star.update()
         star.draw(screen)
@@ -297,8 +313,8 @@ def reset_game(avatar_type='falcon', difficulty='normal'):
     player.damage_mult = player.stats.get('damage_mult', 1.0)
     player.weapon.damage = int(1 * player.damage_mult)
     
-    # Return tuple with all game state including special_effects list
-    return (player, [], [], [], 0, 0, starting_health, False, 0, 0, [], [], 0, difficulty, None, -100, Achievement(), [])
+    # Return tuple with all game state including visual effects systems
+    return (player, [], [], [], 0, 0, starting_health, False, 0, 0, [], [], 0, difficulty, None, -100, Achievement(), [], [], ScreenJuice(WIDTH, HEIGHT), ComboVisualizer(WIDTH, HEIGHT))
 
 # Main loop
 while True:
@@ -318,7 +334,7 @@ while True:
         continue
     
     # Game init
-    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects = reset_game(selected_avatar, current_difficulty)
+    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer = reset_game(selected_avatar, current_difficulty)
     
     running = True
     boss_spawned_scores = set()
@@ -344,7 +360,7 @@ while True:
                     break
                 
                 if game_over and event.key == pygame.K_r:
-                    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects = reset_game(selected_avatar, current_difficulty)
+                    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer = reset_game(selected_avatar, current_difficulty)
                     boss_spawned_scores = set()
                 
                 if not game_over and event.key == pygame.K_SPACE:
@@ -376,6 +392,10 @@ while True:
             player.update()
             if hasattr(player, 'shield') and player.shield:
                 player.shield.update()
+            
+            # Update juice effects
+            screen_juice.update()
+            combo_visualizer.update(combo)
             
             # Difficulty
             difficulty_multiplier = DIFFICULTIES[current_difficulty]
@@ -500,8 +520,19 @@ while True:
                                         is_killed = enemy.take_damage(final_damage)
                                         
                                         if is_killed:
+                                            # Professional explosion system
                                             explosions.append(Explosion(int(enemy.x + enemy.size // 2), int(enemy.y + enemy.size // 2), (255, 165, 0), 20))
+                                            explosions.append(ParticleExplosion(int(enemy.x + enemy.size // 2), int(enemy.y + enemy.size // 2), (255, 165, 0), 25, 'mixed'))
+                                            
                                             special_effects.append(CritHitEffect(int(enemy.x + enemy.size // 2), int(enemy.y + enemy.size // 2)))
+                                            special_effects.append(StarburstEffect(int(enemy.x + enemy.size // 2), int(enemy.y + enemy.size // 2), (255, 255, 100), 40))
+                                            
+                                            # Add visual burst effect
+                                            visual_effects.append(EnergyPulse(int(enemy.x + enemy.size // 2), int(enemy.y + enemy.size // 2), 100, (255, 200, 100)))
+                                            
+                                            # Screen shake feedback
+                                            screen_juice.trigger_shake(intensity=3, duration=8)
+                                            
                                             if enemy in enemies:
                                                 enemies.remove(enemy)
                                             
@@ -517,7 +548,8 @@ while True:
                                             score += score_gained
                                             combo += 1
                                             
-                                            floating_texts.append(FloatingText(enemy.x, enemy.y, f"+{score_gained}", (255, 255, 0), lifetime=50))
+                                            # Use advanced ShinyNumber instead of regular floating text
+                                            floating_texts.append(ShinyNumber(enemy.x, enemy.y, score_gained, (255, 215, 0)))
                                             
                                             if random.random() < 0.20:  # Increased from 0.15 - 20% chance for powerup
                                                 power_type = random.choice(['health', 'fire_rate'])
@@ -525,9 +557,11 @@ while True:
                                                 special_effects.append(LootEffect(int(enemy.x), int(enemy.y)))
                                         else:
                                             # Show damage taken with combo bonus indicator
-                                            damage_text = f"-{final_damage}" if combo_bonus > 0 else f"-{final_damage}"
+                                            damage_text = f"-{final_damage}"
                                             damage_color = (255, 255, 100) if combo_bonus > 0 else (255, 100, 100)
-                                            floating_texts.append(FloatingText(enemy.x, enemy.y, damage_text, damage_color, lifetime=30))
+                                            floating_texts.append(ShinyNumber(enemy.x, enemy.y, final_damage, damage_color))
+                                            # Small screen shake for non-kill hits too
+                                            screen_juice.trigger_shake(intensity=1.5, duration=4)
                                         
                                         if bullet in bullets:
                                             bullets.remove(bullet)
@@ -549,7 +583,19 @@ while True:
                                         
                                         if is_killed:
                                             explosions.append(Explosion(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), (200, 0, 255), 50))
+                                            explosions.append(ParticleExplosion(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), (200, 100, 255), 50, 'mixed'))
                                             special_effects.append(WaveEffect(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), 400))
+                                            special_effects.append(StarburstEffect(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), (200, 0, 255), 80))
+                                            
+                                            # Maximum screen juice for boss kill
+                                            visual_effects.append(ScreenFlash((200, 0, 255), duration=15))
+                                            visual_effects.append(EnergyPulse(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), 300, (200, 100, 255)))
+                                            
+                                            # Intense screen effects
+                                            screen_juice.trigger_shake(intensity=10, duration=20)
+                                            screen_juice.add_chromatic_aberration(8)
+                                            screen_juice.scanline_intensity = 0.8
+                                            
                                             score += 100
                                             combo += 10
                                             screen_shake = 30
@@ -610,10 +656,19 @@ while True:
                             # Calculate max health for this avatar
                             max_health = 3 + player.stats.get('health_bonus', 0)
                             health = min(health + HEALTH_RESTORE_VALUE, max(1, max_health))
-                            floating_texts.append(FloatingText(player.x, player.y, "+HP", (0, 255, 0), lifetime=40))
+                            floating_texts.append(ShinyNumber(player.x, player.y, 0, (0, 255, 0)))
+                            visual_effects.append(ScreenFlash((0, 255, 0), duration=10))
+                            # Screen juice for health pickup
+                            screen_juice.trigger_shake(intensity=2, duration=6)
+                            special_effects.append(StarburstEffect(int(player.x + player.size // 2), int(player.y + player.size // 2), (0, 255, 0), 50))
                         else:
                             player.fire_rate_boost = FIRE_RATE_BOOST_DURATION
-                            floating_texts.append(FloatingText(player.x, player.y, "⚡ FAST!", (255, 255, 0), lifetime=40))
+                            floating_texts.append(ShinyNumber(player.x, player.y, 0, (255, 255, 0)))
+                            visual_effects.append(ScreenFlash((255, 255, 0), duration=10))
+                            # Screen juice for boost pickup
+                            screen_juice.trigger_shake(intensity=2.5, duration=6)
+                            special_effects.append(StarburstEffect(int(player.x + player.size // 2), int(player.y + player.size // 2), (255, 255, 0), 50))
+                            screen_juice.add_chromatic_aberration(3)
                         
                         if powerup in powerups:
                             powerups.remove(powerup)
@@ -654,6 +709,17 @@ while True:
                 except Exception as e:
                     if effect in special_effects:
                         special_effects.remove(effect)
+            
+            # Update visual effects (screen flashes, energy pulses, etc)
+            for vfx in visual_effects[:]:
+                try:
+                    vfx.update()
+                    if vfx.is_done():
+                        if vfx in visual_effects:
+                            visual_effects.remove(vfx)
+                except Exception as e:
+                    if vfx in visual_effects:
+                        visual_effects.remove(vfx)
         
         # Draw
         draw_gradient_background(screen)
@@ -719,6 +785,15 @@ while True:
                             effect.draw(temp_surface)
                     except Exception as e:
                         print(f"Effect draw error: {e}")
+                
+                # Draw particle effects (energy pulses, etc) on temp surface
+                for vfx in visual_effects[:]:
+                    try:
+                        if vfx and hasattr(vfx, 'draw') and not hasattr(vfx, '__class__') or vfx.__class__.__name__ not in ['ScreenFlash']:
+                            if vfx.__class__.__name__ in ['EnergyPulse', 'ShieldEffect']:
+                                vfx.draw(temp_surface)
+                    except Exception as e:
+                        print(f"Visual effect draw error: {e}")
             except Exception as e:
                 log_crash(f"Critical drawing error: {e}")
                 print(f"Drawing error: {e}")
@@ -795,16 +870,9 @@ while True:
                 health_text = font_small.render(health_text_display, True, (255, 100, 50) if is_mini else health_color)
                 screen.blit(health_text, (bar_x + 80 if is_mini else bar_x + 60, bar_y + 5))
                 
-                # Combo multiplier indicator
+                # Draw advanced combo visualizer
                 if combo > 0:
-                    # Better combo multiplier: every 3 hits = +0.2x (was every 5 hits = +0.1x)
-                    combo_mult = 1.0 + (combo // 3) * 0.2
-                    combo_indicator = font_small.render(f"x{combo_mult:.1f} Multiplier | Combo: {combo}", True, (255, 215, 0))
-                    # Combo bar with better scaling
-                    combo_bar_fill = min(300, int(300 * (combo / 50)))  # Fills at 50 combo
-                    pygame.draw.rect(screen, (255, 215, 0), (WIDTH // 2 - 150, HEIGHT - 90, 300, 30), 2)
-                    pygame.draw.rect(screen, (200, 150, 0), (WIDTH // 2 - 150, HEIGHT - 90, combo_bar_fill, 30))
-                    screen.blit(combo_indicator, (WIDTH // 2 - 180, HEIGHT - 85))
+                    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
                 
                 if hasattr(player, 'fire_rate_boost') and player.fire_rate_boost > 0:
                     boost_progress = player.fire_rate_boost / max(1, FIRE_RATE_BOOST_DURATION)  # Prevent division by zero
@@ -819,6 +887,17 @@ while True:
             except Exception as e:
                 log_crash(f"UI rendering error: {e}")
                 print(f"UI rendering error: {e}")
+            
+            # Draw screen flash effects (on top of everything)
+            try:
+                for vfx in visual_effects[:]:
+                    try:
+                        if vfx and vfx.__class__.__name__ == 'ScreenFlash':
+                            vfx.draw(screen)
+                    except Exception as e:
+                        pass
+            except Exception as e:
+                pass
             
         
         else:
