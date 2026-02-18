@@ -17,6 +17,9 @@ from visual_effects import (Nebula, EnergyPulse, ScreenFlash, NeonGlow,
                             ComboMeterVisual, ScreenTransition, ShieldEffect)
 from screen_juice import (ScreenJuice, ParticleExplosion, FloatingNumber, GlowingElement,
                           MotionTrail, ComboVisualizer, ShinyNumber, PulsingBar, StarburstEffect)
+from story import StorySystem, AVATAR_ABILITIES, get_current_phase
+from boss_enhanced import EnhancedBoss, create_boss_for_wave
+from ui_advanced import AdvancedUIRenderer, MenuRenderer
 import traceback
 
 # Crash logging
@@ -109,51 +112,81 @@ AVATARS = [
 from settings import DIFFICULTIES
 
 def show_main_menu():
-    """Show main menu"""
+    """Show main menu - REDESIGNED"""
     high_score, best_combo, best_wave = load_high_scores()
+    animation_frame = 0
     
     while True:
         clock.tick(FPS)
         draw_gradient_background(screen)
         draw_starfield(screen)
         
-        # Draw title with glow effect
+        animation_frame += 1
+        
+        # EPIC TITLE with glow effect
         title_y = 20
-        for offset in range(5, 0, -1):
-            shadow_title = font_title.render("SURVIVAL GAME", True, (0, 100 + offset*20, 150 + offset*20))
-            screen.blit(shadow_title, (WIDTH // 2 - 290 + offset, title_y + offset))
+        for offset in range(8, 0, -1):
+            shadow_color = (int(100 + offset*12), int(50), int(180 + offset*8))
+            shadow_title = font_title.render("SURVIVAL GAME", True, shadow_color)
+            screen.blit(shadow_title, (WIDTH // 2 - 300 + offset, title_y + offset))
         
         title = font_title.render("SURVIVAL GAME", True, (0, 255, 255))
-        screen.blit(title, (WIDTH // 2 - 285, title_y))
+        screen.blit(title, (WIDTH // 2 - 300, title_y))
         
-        subtitle = font_large.render("🎮 Ultimate Edition", True, (100, 200, 255))
-        screen.blit(subtitle, (WIDTH // 2 - 200, 115))
+        # Animated subtitle
+        pulse_amount = int(50 * math.sin(animation_frame / 30))
+        subtitle_color = (150 + pulse_amount, 220, 255)
+        subtitle = font_large.render("⚔️ ADVENTURE EDITION ⚔️", True, subtitle_color)
+        screen.blit(subtitle, (WIDTH // 2 - subtitle.get_width() // 2, 130))
         
-        pygame.draw.line(screen, (0, 255, 255), (50, 180), (WIDTH - 50, 180), 3)
+        # Beautiful separator lines
+        pygame.draw.line(screen, (0, 255, 100), (50, 200), (WIDTH - 50, 200), 3)
+        pygame.draw.line(screen, (0, 150, 200), (50, 205), (WIDTH - 50, 205), 1)
         
-        # Stats with better formatting
-        stat_x = 200
-        stat_y = 230
-        stats = [
-            ("⭐ HIGH SCORE", str(high_score)),
-            ("🔥 BEST COMBO", str(best_combo)),
-            ("🌊 BEST WAVE", str(best_wave))
+        # STATS PANEL - Redesigned
+        pygame.draw.rect(screen, (10, 30, 50), (80, 230, WIDTH - 160, 130))
+        pygame.draw.rect(screen, (0, 200, 255), (80, 230, WIDTH - 160, 130), 3)
+        
+        stat_x = 120
+        stat_y = 255
+        stats_data = [
+            (f"⭐ HIGH SCORE", f"{high_score:,}", (255, 215, 0)),
+            (f"🔥 BEST COMBO", f"{best_combo}x", (255, 80, 80)),
+            (f"🌊 BEST WAVE", f"Wave {best_wave}", (100, 150, 255))
         ]
         
-        for icon, value in stats:
-            label_text = font_large.render(icon + ":", True, (0, 255, 100))
+        for label, value, color in stats_data:
+            label_text = font_large.render(label, True, color)
             value_text = font_large.render(value, True, (255, 255, 255))
             screen.blit(label_text, (stat_x, stat_y))
-            screen.blit(value_text, (stat_x + 400, stat_y))
-            stat_y += 50
+            screen.blit(value_text, (stat_x + 420, stat_y))
+            stat_y += 40
         
-        pygame.draw.line(screen, (0, 255, 255), (50, 430), (WIDTH - 50, 430), 3)
+        # Separator
+        pygame.draw.line(screen, (0, 255, 100), (50, 380), (WIDTH - 50, 380), 3)
+        pygame.draw.line(screen, (0, 150, 200), (50, 385), (WIDTH - 50, 385), 1)
         
-        menu_text = font_large.render("▶ SPACE to Start", True, (0, 255, 150))
-        settings_text = font_small.render("[ S ] Settings  |  [ Q ] Quit", True, (150, 200, 255))
+        # FEATURES
+        feature_y = 410
+        features_text = font_small.render("✨ 4-Act Story  •  🎯 5 Unique Bosses  •  🚀 5 Avatar Types", True, (100, 255, 150))
+        screen.blit(features_text, (WIDTH // 2 - features_text.get_width() // 2, feature_y))
         
-        screen.blit(menu_text, (WIDTH // 2 - 210, 470))
-        screen.blit(settings_text, (WIDTH // 2 - 170, 540))
+        # MAIN BUTTON - Animated
+        button_y = 470
+        pulse_button = int(10 * math.sin(animation_frame / 15))
+        
+        start_box = pygame.Rect(WIDTH // 2 - 180, button_y, 360, 50)
+        pygame.draw.rect(screen, (0, 100 + pulse_button, 100 + pulse_button), start_box)
+        pygame.draw.rect(screen, (0, 255, 150), start_box, 3)
+        start_text = font_large.render("▶ PRESS SPACE TO START", True, (0, 255, 150))
+        screen.blit(start_text, (WIDTH // 2 - start_text.get_width() // 2, button_y + 10))
+        
+        # Bottom options
+        button_bar_y = 545
+        pygame.draw.line(screen, (0, 255, 100), (50, button_bar_y - 5), (WIDTH - 50, button_bar_y - 5), 2)
+        
+        options_text = font_small.render("[ S ] SETTINGS  |  [ Q ] QUIT  |  Press SPACE to BEGIN!", True, (150, 200, 255))
+        screen.blit(options_text, (WIDTH // 2 - options_text.get_width() // 2, button_bar_y + 10))
         
         pygame.display.flip()
         
@@ -313,8 +346,12 @@ def reset_game(avatar_type='falcon', difficulty='normal'):
     player.damage_mult = player.stats.get('damage_mult', 1.0)
     player.weapon.damage = int(1 * player.damage_mult)
     
-    # Return tuple with all game state including visual effects systems
-    return (player, [], [], [], 0, 0, starting_health, False, 0, 0, [], [], 0, difficulty, None, -100, Achievement(), [], [], ScreenJuice(WIDTH, HEIGHT), ComboVisualizer(WIDTH, HEIGHT))
+    # Create story system and UI renderer
+    story_system = StorySystem()
+    ui_renderer = AdvancedUIRenderer(WIDTH, HEIGHT)
+    
+    # Return tuple with all game state including visual effects systems and story
+    return (player, [], [], [], 0, 0, starting_health, False, 0, 0, [], [], 0, difficulty, None, -100, Achievement(), [], [], ScreenJuice(WIDTH, HEIGHT), ComboVisualizer(WIDTH, HEIGHT), story_system, ui_renderer)
 
 # Main loop
 while True:
@@ -334,7 +371,7 @@ while True:
         continue
     
     # Game init
-    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer = reset_game(selected_avatar, current_difficulty)
+    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer, story_system, ui_renderer = reset_game(selected_avatar, current_difficulty)
     
     running = True
     boss_spawned_scores = set()
@@ -360,7 +397,7 @@ while True:
                     break
                 
                 if game_over and event.key == pygame.K_r:
-                    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer = reset_game(selected_avatar, current_difficulty)
+                    player, enemies, bullets, powerups, spawn_timer, score, health, game_over, combo, max_combo, explosions, floating_texts, screen_shake, difficulty, boss, last_boss_score, achievements, special_effects, visual_effects, screen_juice, combo_visualizer, story_system, ui_renderer = reset_game(selected_avatar, current_difficulty)
                     boss_spawned_scores = set()
                 
                 if not game_over and event.key == pygame.K_SPACE:
@@ -393,13 +430,14 @@ while True:
             if hasattr(player, 'shield') and player.shield:
                 player.shield.update()
             
-            # Update juice effects
-            screen_juice.update()
-            combo_visualizer.update(combo)
-            
-            # Difficulty
+            # Calculate wave first (before using it)
             difficulty_multiplier = DIFFICULTIES[current_difficulty]
             wave = (score // SPEED_INCREASE_INTERVAL) + 1
+            
+            # Update juice effects and story
+            screen_juice.update()
+            combo_visualizer.update(combo)
+            story_system.update(wave, score, combo, boss is None)
             # Cap wave scaling - prevents extreme speeds at high waves
             wave_scaling = min(wave - 1, 12)  # Max 12 wave bonus
             enemy_speed = min(ENEMY_SPEED * difficulty_multiplier['enemy_speed'] + wave_scaling * 0.25, 8.0)  # Cap at 8.0
@@ -413,11 +451,18 @@ while True:
                 enemies.append(new_enemy)
                 spawn_timer = 0
             
-            # Boss spawn (FIX - track all spawned boss scores)
-            boss_threshold = score - (score % 50)
-            if boss_threshold > 0 and boss_threshold not in boss_spawned_scores and boss is None:
-                boss = Boss()
-                boss_spawned_scores.add(boss_threshold)
+            # Boss spawn with improved logic (FIX - only at specific waves)
+            from story import get_boss_type_for_wave
+            boss_waves = [5, 8, 10, 12, 15, 16, 18, 20]
+            
+            # Only spawn boss at specific waves
+            if wave in boss_waves and boss is None and wave not in boss_spawned_scores:
+                boss = create_boss_for_wave(wave)
+                boss_spawned_scores.add(wave)
+                
+                # Show boss spawn story beat
+                boss_type = get_boss_type_for_wave(wave)
+                ui_renderer.add_story_text(f"⚠️ BOSS ALERT! {boss.get_display_name()} APPROACHING!\n★ DANGER: ★★★ ", (255, 0, 0), 150)
             
             # Update boss
             if boss:
@@ -577,11 +622,14 @@ while True:
                                         base_damage = int(getattr(player, 'weapon', Weapon()).damage * getattr(player, 'damage_mult', 1.0))
                                         combo_bonus = max(0, (combo // 3)) * 0.1  # +10% per 3 combo
                                         final_damage = int(base_damage * (1.0 + combo_bonus))
+                                        
                                         is_killed = boss.take_damage(final_damage)
                                         if bullet in bullets:
                                             bullets.remove(bullet)
                                         
                                         if is_killed:
+                                            boss_name = boss.get_display_name()
+                                            
                                             explosions.append(Explosion(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), (200, 0, 255), 50))
                                             explosions.append(ParticleExplosion(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), (200, 100, 255), 50, 'mixed'))
                                             special_effects.append(WaveEffect(int(boss.x + boss.size // 2), int(boss.y + boss.size // 2), 400))
@@ -599,6 +647,19 @@ while True:
                                             score += 100
                                             combo += 10
                                             screen_shake = 30
+                                            
+                                            # Story milestone notification
+                                            from story import MILESTONES
+                                            milestone_bonus = False
+                                            for milestone_id, milestone_data in MILESTONES.items():
+                                                if milestone_data['wave'] == wave:
+                                                    ui_renderer.show_milestone(milestone_data['text'], milestone_data['reward'])
+                                                    milestone_bonus = True
+                                                    break
+                                            
+                                            if not milestone_bonus:
+                                                ui_renderer.add_story_text(f"✓ {boss_name.upper()} DEFEATED!\n+100 POINTS!", (0, 255, 100), 100)
+                                            
                                             floating_texts.append(FloatingText(boss.x, boss.y, "BOSS DEFEATED!", (255, 0, 255), lifetime=80))
                                             new_achievements = achievements.check_achievements(score, combo, wave, True, max_combo)
                                             boss = None
@@ -800,7 +861,7 @@ while True:
             
             screen.blit(temp_surface, (offset_x, offset_y))
             
-            # Draw UI with error protection
+            # Draw UI with error protection using new advanced renderer
             try:
                 if hasattr(player, 'shield') and player.shield:
                     try:
@@ -810,80 +871,24 @@ while True:
             except Exception as e:
                 print(f"Shield access error: {e}")
             
-            # Top info with better styling
+            # Use advanced UI renderer for HUD
             try:
-                score_text = font_small.render(f"Score: {score}", True, (0, 255, 100))
-                combo_text = font_small.render(f"Combo: {combo}", True, (255, 165, 0) if combo > 0 else (100, 100, 100))
-                wave_text = font_small.render(f"Wave: {wave}", True, (0, 200, 255))
-                
-                # Draw semi-transparent background for info
-                pygame.draw.rect(screen, (20, 40, 60), (5, 5, 200, 115), 0)
-                pygame.draw.rect(screen, (0, 150, 255), (5, 5, 200, 115), 2)
-                
-                screen.blit(score_text, (20, 20))
-                screen.blit(combo_text, (20, 50))
-                screen.blit(wave_text, (20, 80))
-                
-                # Avatar info with ability (right side with background)
-                avatar_display_names = {
-                    'falcon': 'Falcon Rocket (Shield)',
-                    'nova': 'Nova Laser (Multi-Shot)',
-                    'shadow': 'Shadow Fighter (Speed)',
-                    'titan': 'Titan Cruiser (Tank)',
-                    'phoenix': 'Phoenix Explorer (Revive)'
-                }
-                avatar_text = font_tiny.render(f"Avatar: {avatar_display_names.get(selected_avatar, 'Falcon')}", True, (100, 200, 255))
-                difficulty_text = font_tiny.render(f"Difficulty: {current_difficulty.upper()}", True, DIFFICULTIES[current_difficulty]['color'])
-                
-                # Draw background for avatar/difficulty info
-                pygame.draw.rect(screen, (20, 40, 60), (WIDTH - 290, 5, 285, 75), 0)
-                pygame.draw.rect(screen, (0, 150, 255), (WIDTH - 290, 5, 285, 75), 2)
-                
-                screen.blit(avatar_text, (WIDTH - 280, 15))
-                screen.blit(difficulty_text, (WIDTH - 280, 45))
-                
-                # Calculate actual max health for this avatar
                 base_health = 3
                 avatar_health_bonus = player.stats.get('health_bonus', 0) if hasattr(player, 'stats') else 0
                 max_health_val = max(1, base_health + avatar_health_bonus)
                 
-                # Mini scout stays at 3 health max
                 if hasattr(player, 'is_mini') and player.is_mini:
                     max_health_val = 3
                 
-                # Health bar
-                bar_width = 300
-                bar_height = 30
-                bar_x = WIDTH // 2 - bar_width // 2
-                bar_y = HEIGHT - 50
+                # Render the complete HUD with story and progression info
+                ui_renderer.render_hud(screen, player, wave, score, combo, health, max_health_val,
+                                      selected_avatar, current_difficulty)
                 
-                pygame.draw.rect(screen, (60, 60, 60), (bar_x - 5, bar_y - 5, bar_width + 10, bar_height + 10))
-                pygame.draw.rect(screen, (30, 30, 30), (bar_x, bar_y, bar_width, bar_height))
-                
-                health_ratio = health / max(1, max_health_val)  # Prevent division by zero
-                health_color = (255, 0, 0) if health <= 1 else (255, 165, 0) if health <= max_health_val // 2 else (0, 255, 0)
-                pygame.draw.rect(screen, health_color, (bar_x, bar_y, int(bar_width * health_ratio), bar_height))
-                pygame.draw.rect(screen, (0, 255, 255), (bar_x, bar_y, bar_width, bar_height), 3)
-                
-                is_mini = hasattr(player, 'is_mini') and player.is_mini
-                health_text_display = "SCOUT MODE" if is_mini else f"HEALTH: {health}/{max_health_val}"
-                health_text = font_small.render(health_text_display, True, (255, 100, 50) if is_mini else health_color)
-                screen.blit(health_text, (bar_x + 80 if is_mini else bar_x + 60, bar_y + 5))
-                
-                # Draw advanced combo visualizer
-                if combo > 0:
-                    combo_visualizer.draw_advanced_meter(screen, font_small, font_large)
-                
-                if hasattr(player, 'fire_rate_boost') and player.fire_rate_boost > 0:
-                    boost_progress = player.fire_rate_boost / max(1, FIRE_RATE_BOOST_DURATION)  # Prevent division by zero
-                    boost_text = font_small.render(f"FIRE BOOST: {player.fire_rate_boost // 10}s", True, (255, 255, 0))
-                    pygame.draw.rect(screen, (60, 60, 0), (WIDTH // 2 - 150, 30, 300, 35), 0)
-                    pygame.draw.rect(screen, (255, 255, 0), (WIDTH // 2 - 150, 30, int(300 * boost_progress), 35))
-                    pygame.draw.rect(screen, (255, 255, 0), (WIDTH // 2 - 150, 30, 300, 35), 3)
-                    screen.blit(boost_text, (WIDTH // 2 - 140, 37))
-                
-                menu_hint = font_tiny.render("Press ESC to return to menu", True, (150, 150, 150))
-                screen.blit(menu_hint, (WIDTH - 280, HEIGHT - 20))
+                # Draw story text if available
+                story_text = story_system.next_story_text()
+                if story_text:
+                    ui_renderer.add_story_text(story_text['text'], story_text['color'], story_text['duration'])
+            
             except Exception as e:
                 log_crash(f"UI rendering error: {e}")
                 print(f"UI rendering error: {e}")

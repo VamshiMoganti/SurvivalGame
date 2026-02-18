@@ -1,5 +1,6 @@
 {
     "chat.tools.terminal.autoApprove": {
-        "&": true
+        "&": true,
+        "&\"C:\\Users\\mogan\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\"": true
     }
 }

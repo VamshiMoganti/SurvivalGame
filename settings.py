@@ -32,6 +32,9 @@ POWERUP_SPEED = 3
 HEALTH_RESTORE_VALUE = 1
 FIRE_RATE_BOOST_DURATION = 300  # Frames
 
+# Health bar depletion - FASTER for more responsiveness
+HEALTH_DEPLETION_SPEED = 3.0  # Multiplier for health bar visual update (was 1.0, now 3x faster)
+
 # Colors
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
